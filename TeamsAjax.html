@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teams Ajax</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="mustache.js"></script>
+    <script src="TeamsAjax.js"></script>
+</head>
+<nav>
+        <a href="TeamsAjax.html"> Teams  </a> |
+        <a href="Groups.html"> Groups </a> |
+        <a href="FilterMatches.html"> Filter Matches </a> |
+        <a href="MatchesInPlay.html"> Matches In Play </a> |
+        <a href="MatchOddsUpdate.html"> Match Odds Update </a> | 
+        <a href="GroupOfDeath.html"> Group Of Death Visual</a> | 
+        <a href="MatchOddsVisual.html"> Match Odds Visual </a>
+</nav>
+<body>
+    <hr>
+    <h1>Teams [jQuery & Mustache]</h1>
+    <script id="teamTemplate" type="text/template">
+        <table border="1">
+            <tr>
+                <th>Group</th><th></th><th>Name</th><th>OutRight</th><th>FIFA Ranking</th>
+            </tr>
+        {{#templateData}}
+            <tr>
+                <td>{{stage}}</td>
+                <td><img src="img/{{{img}}}.jpg" style="width: 40px;height: 20px"></td>
+                <td>{{name}}({{code}})</td>
+                <td>{{odds}}</td>
+                <td>{{ranking}}</td>
+            </tr>
+        {{/templateData}}
+        </table>
+    </script>
+    <div id="teams"></div>
+    <footer>
+        <hr>
+        <p style="text-align: center;">&copy;L00118651</p>
+    </footer>
+</body>
+</html>
