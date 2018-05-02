@@ -18,8 +18,6 @@ window.onload = function() {
         let template = $('#teamTemplate').html();
         let result = Mustache.render(template, {'templateData': templateData});
         $('#teams').html(result);
-
-        
     });
 };
     

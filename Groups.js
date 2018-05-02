@@ -3,9 +3,7 @@ $('document').ready(() => {
    
     $.getJSON('getGroups.php', (data) => {
         console.log(data);
-        // $.each(data.tables, {"Stage" : "A"}, (i, n) => {
-        //     console.log(n.Team);
-        // });
+        
         let a = _.where(data.tables, {"Stage" : "A"});
              _.each(a, (d) =>{
                 $('#groupA').append('<tr>');

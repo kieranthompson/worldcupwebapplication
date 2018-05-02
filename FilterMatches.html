@@ -7,6 +7,7 @@
     <title>Filter Matches</title>
     <script src="jquery-3.3.1.min.js"></script>
     <script src="underscore.js"></script>
+    <script src="mustache.js"></script>
     <script src="FilterMatches.js"></script>
 </head>
 <nav>
@@ -22,9 +23,30 @@
 <hr>
 <h1>Filter Matches [jQuery & Underscore & Mustache]</h1>
 <label for="stage">Stage: </label><select name="stage" id="stage"><option value="All">All...</option></select>
-<label for="team">Team: </label><select name="team" id="team"></select>
+<label for="team">Team: </label><select name="team" id="team"><option value="All">All...</option></select>
     <hr>
-    <div id="content"></div>
+    <script id="template" type="text/template">
+        <table border=1>
+            <tr><th>Date</th><th>Time</th><th>Stage</th><th></th><th>Team1</th><th>1</th><th>X</th><th>2</th><th>Team2</th><th></th><th>Predicition</th></tr>
+        {{#templatedata}}
+            <tr>
+                <td>{{date}}</td>
+                <td>{{time}}</td>
+                <td>{{stage}}</td>
+                <td><img style="width: 40px; height: 20px;" src="img/{{{team1img}}}.jpg"></td>
+                <td>{{team1}} ({{team1abr}})</td>
+                <td>{{team1win}}</td>
+                <td>{{draw}}</td>
+                <td>{{team2win}}</td>
+                <td>{{team2}} ({{team2abr}})</td>
+                <td><img style="width: 40px; height: 20px;" src="img/{{{team2img}}}.jpg"></td>
+                <td>{{predicition}}</td>
+            </tr>
+        {{/templatedata}}
+        </table>
+    </script>
+    <div id="content">
+    </div>
 </body>
 <hr>
 <footer><p style="text-align: center;">&copy;L00118651</p></footer>
