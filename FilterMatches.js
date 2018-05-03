@@ -1,23 +1,27 @@
 $('document').ready(() => {
-    let teamdata, stagedata;
-    templatedata = [];
-    $.getJSON('getTeams.php', data => {
-        teamdata = data;
-        _.each(data, element => {
-            $('#team').append(new Option(element.Name, element.Name));
-        });
-    });
-
+    let teams = [];
+    let templatedata = [];
+    
     $.getJSON('getStages.php', data => {
-        stagedata = data;
-        _.each(data, element => {
-            $('#stage').append(new Option(element.description, element.stage));
+        
+        let team1 = [];
+        let team2 = [];
+        team1 = _.pluck(data, 'Team1');
+        team2 = _.pluck(data, 'Team2');
+        teams = _.uniq(team1.concat(team2));
+        
+        let stages = _.pluck(data, 'description');
+        stages = _.uniq(stages);
+        console.log(stages);
+        
+        _.each(teams, data => {
+            $('#team').append(new Option(data, data));
         });
-    });
 
-    $.getJSON('getMatches.php', data => {
-        let matchdata = data;
-        console.log(matchdata);
+        _.each(stages, data => {
+            $('#stage').append(new Option(data, data));
+        });
+
 
         $('#stage').change(() => {
             $('#team').val('All'); // sets value of team select to all...
@@ -26,19 +30,19 @@ $('document').ready(() => {
             let stageval = $("#stage").val();
 
             if(stageval == 'All') {
-                stage = stagedata;
+                stage = data;
             } 
             else {
-                stage = _.where(matchdata, {'Stage': stageval});
+                stage = _.where(data, {'description': stageval});
             }
-            console.log(stage);
+
             templatedata = [];
             $.each(stage, (index, value) => {
                 
                 templatedata.push({
                     date: value.Date,
                     time: value.Time,
-                    stage: value.Stage,
+                    stage: value.description,
                     matchid: value.MatchID,
                     team1: value.Team1,
                     team1win: value.Team1Win,
@@ -57,19 +61,19 @@ $('document').ready(() => {
             let template = $('#template').html();
                 let result = Mustache.render(template, {'templatedata': templatedata});
                 $('#content').html(result);
-        });
+    });
         
         $('#team').change(() => {
             $('#stage').val('All');
-            let teams = []; let team1, team2;
             let teamval = $('#team').val();
+
             if(teamval == 'All') {
-                teams = matchdata;
+                teams = data;
             } else {
-                team1 = _.where(matchdata, { 'Team1': teamval});
-                team2 = _.where(matchdata, { 'Team2': teamval});
+                let team1 = _.where(data, {Team1: teamval});
+                let team2 = _.where(data, {Team2: teamval});
                 teams = team1.concat(team2);
-                
+                console.log(teams);
             }
             templatedata = [];
             $.each(teams, (index, value) => {

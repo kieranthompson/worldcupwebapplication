@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Match Odds Update</title>
 </head>
-<nav
+<nav>
     <a href="TeamsAjax.html"> Teams  </a> |
     <a href="Groups.html"> Groups </a> |
     <a href="FilterMatches.html"> Filter Matches </a> |
@@ -73,4 +73,6 @@
     </table>
     
 </body>
+<hr>
+<footer style="text-align: center">&copy;L00118651</footer>
 </html>

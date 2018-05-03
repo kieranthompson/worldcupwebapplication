@@ -2,7 +2,7 @@
 $connection = mysqli_connect("localhost","root","");
 mysqli_select_db($connection,"worldcup2018");
 
-$result = mysqli_query($connection,"SELECT DISTINCT * FROM stages");
+$result = mysqli_query($connection,"SELECT DISTINCT * FROM stages inner join matches on stages.stage = matches.Stage");
 
 $rs = array();
 $i=0;
