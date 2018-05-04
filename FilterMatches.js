@@ -95,19 +95,7 @@ $('document').ready(() => {
                     predicition: value.Prediction
 
                 });
-                for(let current of templatedata) {
-                    if(current.stage == 16) {
-                        current.stage = 'Round of 16';
-                    } else if(current.stage == 8) {
-                        current.stage = 'Quater Final';
-                    } else if(current.stage == 4) {
-                        current.stage = 'Semi Final';
-                    } else if(current.stage == 2) {
-                        current.stage = '3rd Place';
-                    } else if( current.stage == 1) {
-                        current.stage = 'Final';
-                    }
-                }
+                
             });
             console.log(templatedata);
             $('#content').html('');
