@@ -51,21 +51,25 @@ function draw() {
             else
             return "steelblue";});
 
-        let labels = svg.selectAll("text").data(grouprankings)
-                                          .enter()
-                                          .append("text");
-
-        let ranking = svg.selectAll("text").data(grouprankings)
-                                            .enter()
-                                            .append("text");
-            
-        let textLabels = labels.attr("x", 20)
-                                 .attr("y", (d, i) => {return 30 + i*60})
-                                 .attr("font-family", "Times New Roman")
-                                 .attr("font-size", "20px")
-                                 .attr("fill", "steelblue")
-                                 .text((d, i) => {return groupLabels[i]});             
-
+        elements.enter().append('text')
+        .attr("x", 0)
+        .attr("y", (d, i) => {return 30 + i*60;})
+        .attr('font-size', '20px')
+        .attr('fill', 'steelblue')
+        .text( (d, i) => {
+            return groupLabels[i];
+        });
+        
+        elements.enter().append('text')
+        .attr("x", (d, i) => {
+            return (grouprankings[i]*1.5)+10;
+        })
+        .attr("y", (d, i) => {return 30 + i*60;})
+        .attr('font-size', '20px')
+        .attr('fill', 'white')
+        .text((d, i) => {
+            return grouprankings[i];
+        });         
     });
         
 }

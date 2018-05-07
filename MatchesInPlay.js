@@ -16,5 +16,9 @@ window.onload = () => {
     let results = Mustache.render(template, {'templatedata': templatearray});
         $('#content').html(results);
         });
+        
+    $('#table tr td').change((() => {
+        $('table tr td').css('background-color', 'blue');
+    }));
     }
 };
